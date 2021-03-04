@@ -1,6 +1,6 @@
 # **4Dev React - Enquetes para Programadores**
 
-[alt text](./public/course-logo.png "Ilustracao treinamento")
+![Link para o treinamento](./public/course-logo.png)
 
 ---
 
