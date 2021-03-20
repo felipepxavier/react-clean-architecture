@@ -2,7 +2,6 @@ import { InvalidFieldError } from '@/validation/errors'
 import { EmailValidation } from '@/validation/validators/email/email-validation'
 import faker from 'faker'
 
-
 const makeSut = (): EmailValidation => new EmailValidation(faker.random.word())
 
 describe('EmailValidation', () => {
