@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Validation } from '@/presentation/protocols/validation'
 import { FieldValidation } from '@/validation/protocols/field-validation'
 
