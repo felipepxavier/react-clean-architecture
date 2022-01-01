@@ -1,5 +1,5 @@
 
-import { SetStorageMock } from '@/data/test/mock-storage'
+import { SetStorageMock } from '@/data/test'
 import { LocalSaveAccessToken } from './local-save-access-token'
 import faker from 'faker'
 
