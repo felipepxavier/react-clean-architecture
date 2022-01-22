@@ -3,6 +3,7 @@ import { cleanup, render, RenderResult, fireEvent, waitFor } from '@testing-libr
 import { ValidationStub, Helper, AddAccountSpy } from '@/presentation/test'
 import faker from 'faker'
 import { SignUp } from '@/presentation/pages'
+import { EmailInUseError } from '@/domain/errors'
 
 type SutTypes = {
   sut: RenderResult
@@ -44,6 +45,11 @@ const simulateValidSubmit = async (sut: RenderResult, name = faker.name.findName
 
 describe('SignUp Component', () => {
   afterEach(cleanup)
+
+  const testElementText = (sut: RenderResult, fieldName: string, text: string): void => {
+    const el = sut.getByTestId(fieldName)
+    expect(el.textContent).toBe(text)
+  }
 
   test('Should start with initial state', () => {
     const validationError = faker.random.words()
@@ -149,5 +155,15 @@ describe('SignUp Component', () => {
     Helper.populateField(sut, 'email')
     await simulateValidSubmit(sut)
     expect(addAccountSpy.callsCount).toBe(0)
+  })
+
+  test('Should present error if AddAccount fails', async () => {
+    const { sut, addAccountSpy } = makeSut()
+    const error = new EmailInUseError()
+
+    jest.spyOn(addAccountSpy, 'add').mockRejectedValueOnce(error)
+    await simulateValidSubmit(sut)
+    testElementText(sut, 'main-error', error.message)
+    Helper.testChildCount(sut, 'error-wrap', 1)
   })
 })
