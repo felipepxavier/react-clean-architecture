@@ -35,6 +35,9 @@ const SignUp: React.FC<Props> = ({ validation, addAccount }: Props) => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault()
+    if (state.isLoading) {
+      return
+    }
     setState({ ...state, isLoading: true })
     await addAccount.add({
       name: state.name,
@@ -54,7 +57,11 @@ const SignUp: React.FC<Props> = ({ validation, addAccount }: Props) => {
           <Input type="password" name="password" placeholder="Digite sua senha" />
           <Input type="password" name="passwordConfirmation" placeholder="Repita sua senha" />
 
-          <button data-testid="submit" disabled={!!state.nameError || !!state.emailError || !!state.passwordError || !!state.passwordConfirmationError } className={Styles.submit} type="submit">Criar</button>
+          <button
+          data-testid="submit"
+          disabled={!!state.nameError || !!state.emailError || !!state.passwordError || !!state.passwordConfirmationError }
+          className={Styles.submit}
+          type="submit">Criar</button>
           <span className={Styles.link}>Voltar</span>
           <FormStatus />
         </form>
