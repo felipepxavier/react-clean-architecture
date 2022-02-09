@@ -47,10 +47,6 @@ module.exports = {
       writeToDisk: true
     }
   },
-  externals: {
-    react: 'React',
-    'react-dom': 'ReactDOM'
-  },
   plugins: [
     new CleanWebpackPlugin(),
     new DefinePlugin({
