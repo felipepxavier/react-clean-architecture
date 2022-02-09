@@ -4,8 +4,12 @@
       "version": "detect"
     }
   },
-  "extends": ["standard-with-typescript", "plugin:react/recommended"],
-  "plugins": ["react"],
+  "extends": [
+    "standard-with-typescript",
+    "plugin:react/recommended",
+    "plugin:cypress/recommended"
+  ],
+  "plugins": ["react", "cypress"],
   "parserOptions": {
     "project": "./tsconfig.json"
   },
@@ -17,5 +21,8 @@
     "react/jsx-uses-react": "error",
     "react/jsx-uses-vars": "error",
     "@typescript-eslint/camelcase": "off"
+  },
+  "env": {
+    "cypress/globals": true
   }
 }
